@@ -23,7 +23,6 @@ export default function Form() {
         alert('EL campo telefono no puede quedar vacio')
         return null
       }
-      console.log(`pass:${form.password}  pass2:${form.password2}`);
       if (!form.password) {
         alert('EL campo password no puede quedar vacio')
         return null;
@@ -38,13 +37,13 @@ export default function Form() {
       }
       console.log("handleSubmit", form)
       alert('Registro realizado con exito')
-      limpiarCampos()
+      setForm({name: '', subname: '', email: '', tel: '', password: '',password2: ''})
   }
          
     const handleChange = (event) => {
       const name = event.target.name
       const value = event.target.value
-      console.log("handleChange", name, value)
+     //console.log("handleChange", name, value)
       setForm({ ... form, [name]: value })
     }
       
@@ -53,24 +52,9 @@ export default function Form() {
         return patron.test(email)
      }
 
-    function limpiarCampos() {
-        form.name = ''
-        form.subname = ''
-        form.email = ''
-        form.tel = ''
-        form.password = ''
-        form.password2 = '' 
-        document.getElementById("name").value = ''
-        document.getElementById("subname").value= ''
-        document.getElementById("email").value = ''
-        document.getElementById("tel").value = ''
-        document.getElementById("password").value = ''
-        document.getElementById("password2").value = '' 
-    }
-
     return (
       <form onSubmit={handleSubmit}>
-        <label>nombre</label>
+        <label>Nombre</label>
         <input
           id="name"
           name="name"
@@ -120,7 +104,6 @@ export default function Form() {
           value={form.password2}
           onChange={handleChange}
         />
-        
         <button type="submit">Enviar</button>
       </form>
     );
